@@ -11,6 +11,9 @@ $ git clone git@github.com:skanehira1126/judge_gpt.git
 $ rye init judge_gpt
 
 # 必要そうなパッケージを追加
-$ rye add openai google gspread numpy pandas streamlit matplotlib plotly seaborn
+$ rye add openai google gspread numpy pandas streamlit matplotlib plotly seaborn jupyterlab
+
+# 環境構築
+$ rye sync
 
 ```

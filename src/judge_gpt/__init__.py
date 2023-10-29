@@ -1,2 +1,1 @@
-def hello():
-    return "Hello from judge-gpt!"
+from .auth import set_apikey_from_file
