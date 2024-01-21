@@ -25,7 +25,7 @@ def auth_gcloud(file_path: str | pathlib.Path, relogin: bool = False) -> gspread
         ログイン時に生成されauthorized_user.jsonを再作成する
     """
 
-    if relogin and pathlib.Path("authorized_user.json").exist():
+    if relogin and pathlib.Path("authorized_user.json").exists():
         pathlib.Path("authorized_user.json").unlink()
 
 
