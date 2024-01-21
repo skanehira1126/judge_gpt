@@ -18,7 +18,7 @@ def make_inputs_from_df(judge_df: pd.DataFrame) -> str:
 
     judge_result_list = []
     for idx, row in judge_df.iterrows():
-        judge_result.append(context.format(
+        judge_result_list.append(context.format(
             player=row["演者"],
             difficulty=row["難易度"], 
             variation=row["多彩性度"],

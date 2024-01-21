@@ -37,5 +37,3 @@ function:
             desc_program_component:
               type: "string"
               description: "コメントから推定される演技の演技構成度を推定した理由や根拠について説明"
-          
-      
