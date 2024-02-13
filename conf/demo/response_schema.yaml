@@ -1,0 +1,46 @@
+type: "function"
+function:
+  name: "judge"
+  description: |
+      一人の審査員の各選手に対する採点結果を可視化する
+  parameters:
+    type: "object"
+    properties:
+      judge_results:
+        type: "array"
+        description: |
+            コメントを元に算出された各選手に対する審査結果情報
+        items:
+          type: "object"
+          properties:
+            player_name:
+              type: "string"
+              description: "採点対象の演者の名前"
+            difficulty:
+              type: "integer"
+              description: "コメントから推定される演技の難易度"
+            # desc_difficulty:
+            #   type: "string"
+            #   description: "コメントから推定される演技の難易度を推定した理由や根拠について説明"
+            variation:
+              type: "integer"
+              description: "コメントから推定される演技の多彩性度"
+            # desc_variation:
+            #   type: "string"
+            #   description: "コメントから推定される演技の多彩性度を推定した理由や根拠について説明"
+            refined:
+              type: "integer"
+              description: "コメントから推定される演技の操作安定度"
+            # desc_cleanliness:
+            #   type: "string"
+            #   description: "コメントから推定される演技の操作安定度を推定した理由や根拠について説明"
+            performance:
+              type: "integer"
+              description: "コメントから推定される演技の演技構成"
+            # desc_program_component:
+            #   type: "string"
+            #   description: "コメントから推定される演技の演技構成度を推定した理由や根拠について説明"
+            desc: 
+                type: "string"
+                description: |
+                    審査コメントから採点結果に行ったった経緯や考え方の要約.

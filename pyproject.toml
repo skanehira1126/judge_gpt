@@ -18,6 +18,7 @@ dependencies = [
     "jupyterlab>=4.0.7",
     "japanize_matplotlib",
     "ipykernel>=6.29.0",
+    "ipywidgets>=8.1.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -32,3 +33,9 @@ dev-dependencies = []
 
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[tool.black]
+line-length = 99
+target-version = ['py311']
+include = '\.pyi?$'
+

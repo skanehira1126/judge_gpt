@@ -159,6 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# secrets
+# その他
 openai.key
 authorized_user.json
+notebooks/*.ipynb
+conf/*
+!conf/demo

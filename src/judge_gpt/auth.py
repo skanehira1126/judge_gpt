@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 import pathlib
 
@@ -5,7 +7,15 @@ import gspread
 import openai
 
 
-def set_openai_apikey_from_file(file_path):
+def set_openai_apikey_from_file(file_path: str | pathlib.Path):
+    """
+    OpenAI認証のためのKeyを環境変数に登録する
+
+    Parameters
+    -----
+    file_path: str or pathlib.Path
+        認証キーが記載されたファイルのパス
+    """
     with open(file_path, "r") as f:
         key = f.read().strip()
         os.environ["OPENAI_API_KEY"] = key
