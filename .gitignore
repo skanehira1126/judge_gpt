@@ -165,3 +165,4 @@ authorized_user.json
 notebooks/*.ipynb
 conf/*
 !conf/demo
+.DS_Store

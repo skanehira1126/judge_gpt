@@ -23,6 +23,8 @@ gss:
         多彩性度： {多彩性度}
         操作安定度: {操作安定度}
         演技構成: {演技構成度}
+  output:
+    key: "1YsBr5sCKTIl6WBTCk0codQWmmNjk_O_RwufV0pZXpTM"
   
 chatgpt:
   secrets: "./openai.key"

@@ -1,5 +1,8 @@
 # judge_gpt
-ChatGPTによる評価コメントを利用した審査
+
+## 概要
+ChatGPTを初めとしたLLMを利用して審査コメントを点数化するシステム.  
+各選手の演技に対するコメントをもとに、評価基準に則り点数化する。
 
 ## 環境構築
 
@@ -8,34 +11,39 @@ ChatGPTによる評価コメントを利用した審査
 
 ## 審査システムの概要
 
-審査員の各選手に対するコメントを元に審査基準に沿って点数化する.
-やり方はいろいろあるけども、今回は審査員はGoogleフォームを利用し審査結果を入力しgoogle spread sheetに連携される場合を考える.
-
+審査コメントをGoogle Formで入力し、Spread SheetでPythonから読み込みChatGPT APIを利用する.
 
 ```mermaid
 sequenceDiagram
     participant local as 端末
+    participant judge as 審査員
+    participant gf as Google Form
     participant gss as Google Spread Sheet
-    participant api as ChatGPT
+    participant api as ChatGPT API
+    participant ui as ChatGPT UI
+
+    loop 選手
+        judge ->> gf: 審査コメントの入力
+    end
+    gf ->> gss: 審査コメントの入力
 
     loop 各審査員
         local ->>+ gss: 審査結果の参照
         gss ->>- local:  審査結果の返却
 
-        local ->> local: 審査結果をChatGPTに渡す文字列に変換
+        local ->> local: 審査結果をChatGPT API用の文章に変換
 
-        local ->>+ api: 審査結果をPromptと共にChathGPTに渡す
+        local ->>+ api: 審査
         api ->>- local: 審査結果
     end
 
     local ->> local: 審査結果を集計と集約
-
-    loop 各選手
-        local ->>+ api: 採点項目ごとの全ての審査員のコメント
-        api ->>- local: 審査員全体のコメントの要約
-    end
-
     local ->> gss: 審査結果を登録
+
+    note over ui: コメントの要約はAPIでやるよりも元々ある程度プロンプトが<br>しっかりしているChatGPT UIの方が手間がかからず楽.
+    local ->>+ ui: 採点項目ごとの全ての審査員のコメント
+    ui ->>- local: 審査員全体のコメントの要約
+
 ```
 
 ## 設定
@@ -63,7 +71,9 @@ sequenceDiagram
 | ファイル名 | 説明 |
 | :--- | :--- |
 | `gcloud` | gssをpythonで取得するために必要なgcloudの認証key |
-| `gss_ey` | google spread sheetの識別子. URLに含まれるランダムそうな文字列 |
+| `gss_key` | google spread sheetの識別子. URLに含まれるランダムそうな文字列 |
+| `output` | 審査結果を出力するスプレッドシートの識別子
+
 
 ##### chatgpt
 | ファイル名 | 説明 |
